@@ -1,5 +1,5 @@
 # Base this image on core-image-base
-include recipes-core/images/core-image-base.bb
+include ${BSPDIR}/sources/poky/meta/recipes-core/images/core-image-base.bb
 
 DESCRIPTION = "Image for TerraNet demoboard"
 
