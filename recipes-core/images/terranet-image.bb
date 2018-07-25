@@ -8,7 +8,6 @@ IMAGE_INSTALL += " \
     kernel-modules \
     "
 
-IMAGE_FEATURES += "ssh-server-dropbear splash"
-
+IMAGE_FEATURES += "splash package-management ssh-server-dropbear hwcodecs"
 
 

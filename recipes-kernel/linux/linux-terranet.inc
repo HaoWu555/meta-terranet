@@ -3,22 +3,23 @@
 SUMMARY = "Terranet Linux kernel"
 
 LICENSE = "GPLv2"
-LIC_FILES_CHKSUM = "file://COPYING.MIT;md5=838c366f69b72c5df05c96dff79b35f2"
+#LIC_FILES_CHKSUM = "file://COPYING.MIT;md5=838c366f69b72c5df05c96dff79b35f2"
+LIC_FILES_CHKSUM = "file://COPYING.MIT;md5=d7810fab7487fb0aad327b76f1be7cd7"
 
 inherit kernel fsl-kernel-localversion fsl-vivante-kernel-driver-handler
 #autotools
 
 #FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}-${PV}:" 
 
-SRC_URI = "git://${BSPDIR}/sources/linux-imx;protocol=file;branch=${SRCBRANCH}\
+SRC_URI = "git://${BSPDIR}/sources/terranet_support/linux-imx;protocol=file;branch=${SRCBRANCH}\
            file://defconfig"
+
 SRCBRANCH = "master"
 SRCREV = "f15ea3fe065e11c3a6f3153e99d4c08af23b421b"
-#LINUX_VERSION ?= "4.9.11"
+
+KERNEL_SRC = "git://${BSPDIR}/sources/terranet_support/linux-imx;protocol=file;branch=${SRCBRANCH}"
 
 DEPENDS += "lzop-native bc-native"
-
-#LINUX_VERSION_EXTENSION ??= "-terranet-${LINUX_KERNEL_TYPE}"
 
 S = "${WORKDIR}/git"
 
