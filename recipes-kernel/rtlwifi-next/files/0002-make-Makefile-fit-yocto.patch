@@ -1,0 +1,65 @@
+From 053c1e763e0aede7318f9c1be9e327e58c1aa27a Mon Sep 17 00:00:00 2001
+From: Hao Wu <hao.wu@terranet.se>
+Date: Fri, 27 Jul 2018 10:20:01 +0200
+Subject: [PATCH 2/2] make Makefile fit yocto
+
+Change-Id: Ief622ffdc43bfe4eb56e98b2aa9f2ffc9176e8ff
+---
+ Makefile | 31 +++++++------------------------
+ 1 file changed, 7 insertions(+), 24 deletions(-)
+
+diff --git a/Makefile b/Makefile
+index ee512e9..8c1b674 100644
+--- a/Makefile
++++ b/Makefile
+@@ -1,22 +1,8 @@
+ PWD := $(shell pwd)
+-ifeq ($(CROSS_COMPILE),)
+ SHELL := /bin/sh
+-CC = gcc
+-KVER  := $(shell uname -r)
+-KSRC := /lib/modules/$(KVER)/build
+-# Handle the move of the entire rtlwifi tree
+-ifneq ("","$(wildcard /lib/modules/$(KVER)/kernel/drivers/net/wireless/realtek)")
+-MODDESTDIR := /lib/modules/$(KVER)/kernel/drivers/net/wireless/realtek/rtlwifi
+-else
+-MODDESTDIR := /lib/modules/$(KVER)/kernel/drivers/net/wireless/rtlwifi
+-endif
+-else
+-KSRC :=${KERNEL_SRC}
+-#KSRC := $(PWD)/../linux-imx
+-#KSRC := $(PWD)/../terranet_linux-imx/linux-imx
+-MODDESTDIR := $(KSRC)/drivers/net/wireless/rtlwifi
+-endif
+-FIRMWAREDIR := /lib/firmware/
++MODDESTDIR := $(KERNEL_SRC)/drivers/net/wireless/rtlwifi
++#FIRMWAREDIR := /lib/firmware/
++FIRMWAREDIR := $(KERNEL_SRC)/firmware
+ CLR_MODULE_FILES := *.mod.c *.mod *.o .*.cmd *.ko *~ .tmp_versions* modules.order Module.symvers
+ SYMBOL_FILE := Module.symvers
+ #Handle the compression option for modules in 3.18+
+@@ -96,17 +82,14 @@ ccflags-y += -D__CHECK_ENDIAN__
+ ccflags-y += -DCONFIG_RTLWIFI_DEBUG
+ subdir-ccflags-y += -DCONFIG_RTLWIFI_DEBUG
+ 
+-ifeq ("$(KVER)", "3.14.35-031435-generic")
+-ccflags-y += -D_ieee80211_is_robust_mgmt_frame=ieee80211_is_robust_mgmt_frame
+-subdir-ccflags-y += -D_ieee80211_is_robust_mgmt_frame=ieee80211_is_robust_mgmt_frame
+-endif
+-
+ CHECKFLAGS += -D__CHECK_ENDIAN__
+ 
+ all:
+-	$(MAKE) -C $(KSRC) M=$(PWD) modules
++	$(MAKE) -C $(KERNEL_SRC) M=$(PWD) modules
+ install: all
+-	$(MAKE) -C $(KSRC) M=$(PWD) modules_install
++modules_install:
++	$(MAKE) -C $(KERNEL_SRC) M=$(PWD) modules_install
++
+ # ifeq (,$(wildcard ./backup_drivers.tar))
+ # 	@echo Making backups
+ # 	@tar cPf backup_drivers.tar $(MODDESTDIR)
+-- 
+2.7.4
+

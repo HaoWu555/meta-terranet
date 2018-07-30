@@ -7,13 +7,15 @@ inherit module
 
 #KERNEL_MODULE_AUTOLOAD += "rtlwifi-next"
 
-FILESEXTRAPATHS_prepend := "${THISDIR}/file:"
+FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
 
-SRC_URI= "git://${BSPDIR}/sources/terranet_support/rtlwifi-next;protocol=file;branch=${SRCBRANCH}"
+SRC_URI= "git://${BSPDIR}/sources/terranet_support/rtlwifi-next;protocol=file;branch=${SRCBRANCH}\
+          file://0001-modify-the-KSCR-variable-in-Makefile.patch\
+		  file://0002-make-Makefile-fit-yocto.patch"
 
 SRCBRANCH = "master"
-#SRCREV = "b18813dd5e6df80861927bcca85753c867641bac"
-SRCREV = "053c1e763e0aede7318f9c1be9e327e58c1aa27a"
+SRCREV = "3f6a961c42950a859dc1f25d9c31394e9931ca6a"
+#SRCREV = "053c1e763e0aede7318f9c1be9e327e58c1aa27a"
 
 S = "${WORKDIR}/git"
 B = "${WORKDIR}/git"
