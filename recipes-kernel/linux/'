@@ -23,8 +23,8 @@ DEPENDS += "lzop-native bc-native"
 
 S = "${WORKDIR}/git"
 
-# set the our custom kernal souce path for the rtlwifi setting, this value is in rtlwifi-next Makfile
-#KSRC_customs = "${WORKDIR}/git"
+# set the kernal souce path for the rtlwifi setting, this value is in rtlwifi-next Makfile
+KSRC = "${WORKDIR}/git"
 
 # We need to pass it as param since kernel might support more then one
 # machine, with different entry points
