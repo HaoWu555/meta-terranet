@@ -3,14 +3,15 @@
 SUMMARY = "Terranet Linux kernel"
 
 LICENSE = "GPLv2"
-LIC_FILES_CHKSUM = "file://COPYING.MIT;md5=d7810fab7487fb0aad327b76f1be7cd7"
+#LIC_FILES_CHKSUM = "file://COPYING.MIT;md5=d7810fab7487fb0aad327b76f1be7cd7"
+LIC_FILES_CHKSUM = "file://COPYING;md5=d7810fab7487fb0aad327b76f1be7cd7"
 
 inherit kernel fsl-kernel-localversion fsl-vivante-kernel-driver-handler
 
-#FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}-${PV}:" 
+FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:" 
 
 SRC_URI = "git://${BSPDIR}/sources/terranet_support/linux-imx;protocol=file;branch=${SRCBRANCH}\
-           file://defconfig"
+           file://imx_v7_pci_defconfig"
 
 SRCBRANCH = "master"
 SRCREV = "f15ea3fe065e11c3a6f3153e99d4c08af23b421b"
