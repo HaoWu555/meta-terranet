@@ -15,11 +15,10 @@ SRC_URI= "git://${BSPDIR}/sources/terranet_support/rtlwifi-next;protocol=file;br
 
 SRCBRANCH = "master"
 SRCREV = "3f6a961c42950a859dc1f25d9c31394e9931ca6a"
-#SRCREV = "053c1e763e0aede7318f9c1be9e327e58c1aa27a"
 
 S = "${WORKDIR}/git"
 B = "${WORKDIR}/git"
-#D = "${WORKDIR}/Image"
+D = "${WORKDIR}/Image"
 
 #FILES_${PN} += "${libexecdir} /lib/modules/${KERNEL_VERSION}/rtlwifi-next"
 INHIBIT_PACKAGE_STRIP = "1"
@@ -27,6 +26,4 @@ INHIBIT_PACKAGE_STRIP = "1"
 # The inherit of module.bbclass will automatically name module packages with
 # "kernel-module-" prefix as required by the oe-core build environment.
 #Recipes that rely on the kernel source code and do not inherit the module classes might need to add explicit dependencies on the do_shared_workdir kernel task:
-
-#do_configure[depends] += "virtual/kernel:do_shared_workdir"
 

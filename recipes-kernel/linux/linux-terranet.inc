@@ -25,8 +25,8 @@ S = "${WORKDIR}/git"
 KERNEL_EXTRA_ARGS += "LOADADDR=${UBOOT_ENTRYPOINT}"
 
 # Put a local version until we have a true SRCREV to point to
-LOCALVERSION ?= "-1.0.0"
+#LOCALVERSION ?= "-1.0.0"
 
 COMPATIBLE_MACHINE = "(mx6|mx7)"
-DEFAULT_PREFERENCE = "1"
+DEFAULT_PREFERENCE = "-1"
 
