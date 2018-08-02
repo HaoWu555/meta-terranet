@@ -18,7 +18,7 @@ SRCREV = "3f6a961c42950a859dc1f25d9c31394e9931ca6a"
 
 S = "${WORKDIR}/git"
 B = "${WORKDIR}/git"
-D = "${WORKDIR}/Image"
+#D = "${WORKDIR}/Image"
 
 #FILES_${PN} += "${libexecdir} /lib/modules/${KERNEL_VERSION}/rtlwifi-next"
 INHIBIT_PACKAGE_STRIP = "1"

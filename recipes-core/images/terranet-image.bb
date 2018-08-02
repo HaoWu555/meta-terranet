@@ -8,10 +8,10 @@ DESCRIPTION = "Image for TerraNet demoboard"
 IMAGE_INSTALL += " \
     kernel-modules \
 	rtlwifi-next \
+	iw \
+	pciutils \
 	"
 
 IMAGE_FEATURES += "splash package-management ssh-server-dropbear hwcodecs"
-
-IMAGE_FSTYPES = "tar.bz2 ext4"
-INHERIT += "buildhistory"
+COMPATIBLE_MACHINE = "(mx6q|mx6dl)"
 

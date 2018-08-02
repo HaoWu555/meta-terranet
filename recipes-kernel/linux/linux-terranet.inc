@@ -11,7 +11,7 @@ inherit kernel fsl-kernel-localversion fsl-vivante-kernel-driver-handler
 FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:" 
 
 SRC_URI = "git://${BSPDIR}/sources/terranet_support/linux-imx;protocol=file;branch=${SRCBRANCH}\
-           file://imx_v7_pci_defconfig"
+           file://defconfig"
 
 SRCBRANCH = "master"
 SRCREV = "f15ea3fe065e11c3a6f3153e99d4c08af23b421b"
@@ -25,7 +25,7 @@ S = "${WORKDIR}/git"
 KERNEL_EXTRA_ARGS += "LOADADDR=${UBOOT_ENTRYPOINT}"
 
 # Put a local version until we have a true SRCREV to point to
-#LOCALVERSION ?= "-1.0.0"
+LOCALVERSION ?= "-1.0.0"
 
 COMPATIBLE_MACHINE = "(mx6|mx7)"
 DEFAULT_PREFERENCE = "-1"
