@@ -10,6 +10,7 @@ IMAGE_INSTALL += " \
 	rtlwifi-next \
 	iw \
 	pciutils \
+	wireless-tools \
 	"
 
 IMAGE_FEATURES += "splash package-management ssh-server-dropbear hwcodecs"

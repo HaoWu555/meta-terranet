@@ -18,10 +18,19 @@ SRCREV = "3f6a961c42950a859dc1f25d9c31394e9931ca6a"
 
 S = "${WORKDIR}/git"
 B = "${WORKDIR}/git"
-#D = "${WORKDIR}/Image"
+#D = "${WORKDIR}/image"
+
+EXTRA_OEMAKE += "KSRC=${STAGING_KERNEL_DIR} \
+			     MODDESTDIR=${STAGING_KERNEL_DIR}/drivers/net/wireless/rtlwifi"
 
 #FILES_${PN} += "${libexecdir} /lib/modules/${KERNEL_VERSION}/rtlwifi-next"
 INHIBIT_PACKAGE_STRIP = "1"
+
+do_install_append () {
+	install -d ${D}/lib/firmware/rtlwifi/ 
+	install -m 755 ${B}/firmware/rtlwifi/rtl8822befw.bin ${D}/lib/firmware/rtlwifi/rtl8822befw.bin
+}
+FILES_${PN}= "/lib/firmware/rtlwifi/rtl8822befw.bin"
 
 # The inherit of module.bbclass will automatically name module packages with
 # "kernel-module-" prefix as required by the oe-core build environment.
