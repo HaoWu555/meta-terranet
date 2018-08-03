@@ -10,8 +10,7 @@ inherit module
 FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
 
 SRC_URI= "git://${BSPDIR}/sources/terranet_support/rtlwifi-next;protocol=file;branch=${SRCBRANCH}\
-          file://0001-modify-the-KSCR-variable-in-Makefile.patch\
-		  file://0002-make-Makefile-fit-yocto.patch"
+		  file://0001-modify-Makefile-to-fit-yocto-only.patch"
 
 SRCBRANCH = "master"
 SRCREV = "3f6a961c42950a859dc1f25d9c31394e9931ca6a"

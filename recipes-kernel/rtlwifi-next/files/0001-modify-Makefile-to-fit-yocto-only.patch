@@ -1,18 +1,18 @@
-From 053c1e763e0aede7318f9c1be9e327e58c1aa27a Mon Sep 17 00:00:00 2001
+From 065d74acdd04618eb7e059cf472a22a1a90ea5ae Mon Sep 17 00:00:00 2001
 From: Hao Wu <hao.wu@terranet.se>
-Date: Fri, 27 Jul 2018 10:20:01 +0200
-Subject: [PATCH 2/2] make Makefile fit yocto
+Date: Fri, 3 Aug 2018 09:23:17 +0200
+Subject: [PATCH] modify Makefile to fit yocto only
 
-Change-Id: Ief622ffdc43bfe4eb56e98b2aa9f2ffc9176e8ff
+Change-Id: I0d23758d88d428d78d501e9a433d2f0a0f0e8dfc
 ---
- Makefile | 31 +++++++------------------------
- 1 file changed, 7 insertions(+), 24 deletions(-)
+ Makefile | 28 ++++++----------------------
+ 1 file changed, 6 insertions(+), 22 deletions(-)
 
 diff --git a/Makefile b/Makefile
-index ee512e9..8c1b674 100644
+index fc50648..8eacf07 100644
 --- a/Makefile
 +++ b/Makefile
-@@ -1,22 +1,8 @@
+@@ -1,21 +1,8 @@
  PWD := $(shell pwd)
 -ifeq ($(CROSS_COMPILE),)
  SHELL := /bin/sh
@@ -26,19 +26,18 @@ index ee512e9..8c1b674 100644
 -MODDESTDIR := /lib/modules/$(KVER)/kernel/drivers/net/wireless/rtlwifi
 -endif
 -else
--KSRC :=${KERNEL_SRC}
--#KSRC := $(PWD)/../linux-imx
+-KSRC := $(PWD)/../linux-imx
 -#KSRC := $(PWD)/../terranet_linux-imx/linux-imx
 -MODDESTDIR := $(KSRC)/drivers/net/wireless/rtlwifi
 -endif
 -FIRMWAREDIR := /lib/firmware/
-+MODDESTDIR := $(KERNEL_SRC)/drivers/net/wireless/rtlwifi
++#MODDESTDIR := $(KSRC)/drivers/net/wireless/rtlwifi
 +#FIRMWAREDIR := /lib/firmware/
-+FIRMWAREDIR := $(KERNEL_SRC)/firmware
++#FIRMWAREDIR := $(KERNEL_SRC)/firmware
  CLR_MODULE_FILES := *.mod.c *.mod *.o .*.cmd *.ko *~ .tmp_versions* modules.order Module.symvers
  SYMBOL_FILE := Module.symvers
  #Handle the compression option for modules in 3.18+
-@@ -96,17 +82,14 @@ ccflags-y += -D__CHECK_ENDIAN__
+@@ -95,17 +82,14 @@ ccflags-y += -D__CHECK_ENDIAN__
  ccflags-y += -DCONFIG_RTLWIFI_DEBUG
  subdir-ccflags-y += -DCONFIG_RTLWIFI_DEBUG
  
@@ -50,12 +49,11 @@ index ee512e9..8c1b674 100644
  CHECKFLAGS += -D__CHECK_ENDIAN__
  
  all:
--	$(MAKE) -C $(KSRC) M=$(PWD) modules
-+	$(MAKE) -C $(KERNEL_SRC) M=$(PWD) modules
- install: all
--	$(MAKE) -C $(KSRC) M=$(PWD) modules_install
+ 	$(MAKE) -C $(KSRC) M=$(PWD) modules
+-install: all
++#install: all
 +modules_install:
-+	$(MAKE) -C $(KERNEL_SRC) M=$(PWD) modules_install
+ 	$(MAKE) -C $(KSRC) M=$(PWD) modules_install
 +
  # ifeq (,$(wildcard ./backup_drivers.tar))
  # 	@echo Making backups
