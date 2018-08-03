@@ -11,8 +11,10 @@ IMAGE_INSTALL += " \
 	iw \
 	pciutils \
 	wireless-tools \
+	linux-firmware-ath6k\
+	linux-firmware-imx-sdma-imx6q\
+	firmware-imx-vpu-imx6q\
+	vim\
 	"
-
 IMAGE_FEATURES += "splash package-management ssh-server-dropbear hwcodecs"
-COMPATIBLE_MACHINE = "(mx6q|mx6dl)"
 
