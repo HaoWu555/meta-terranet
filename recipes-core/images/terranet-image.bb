@@ -15,6 +15,7 @@ IMAGE_INSTALL += " \
 	linux-firmware-imx-sdma-imx6q\
 	firmware-imx-vpu-imx6q\
 	vim\
+	empty-root-password\
 	"
 IMAGE_FEATURES += "splash package-management ssh-server-dropbear hwcodecs"
 
