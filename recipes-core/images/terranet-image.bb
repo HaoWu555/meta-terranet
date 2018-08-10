@@ -10,8 +10,9 @@ IMAGE_INSTALL_append = " \
 	rtlwifi-next \
 	pciutils \
 	vim\
+	glibc-staticdev \
 	packagegroup-base-wifi \
 	"
 IMAGE_FEATURES += "splash package-management ssh-server-dropbear hwcodecs empty-root-password"
 
-DISTRO_FEATURES += "wifi bluetooth ${DISTRO_FEATURES_LIBC}"
+DISTRO_FEATURES += "ipv6 wifi bluetooth systemd ${DISTRO_FEATURES_LIBC}"
